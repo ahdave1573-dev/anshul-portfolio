@@ -1,5 +1,7 @@
 import React from 'react';
 import './Hero.css';
+import profileImg from '../assets/profile.png'; 
+import resumeFile from '../assets/Anshul Dave Resume.pdf'; 
 
 const Hero = () => {
     return (
@@ -28,7 +30,8 @@ const Hero = () => {
 
                     <div className="hero-actions">
                         <a href="#projects" className="btn-solid">Discover My Work <span>→</span></a>
-                        <a href="src/assets/Anshul Dave Resume.pdf" download="Anshul Dave Resume.pdf" className="btn-outline-dark">
+                        {/* અહીં સખત ફિક્સ: સાચો વેરીએબલ બાઈન્ડ કર્યો */}
+                        <a href={resumeFile} download="Anshul_Dave_Resume.pdf" className="btn-outline-dark">
                             Download Resume
                         </a>
                     </div>
@@ -52,7 +55,8 @@ const Hero = () => {
                 <div className="hero-visual-container fade-in">
                     <div className="profile-circle-wrapper">
                         <div className="profile-circle">
-                            <img src="/src/assets/profile1.png" alt="Dave Anshul" className="hero-profile-img" />
+                            {/* અહીં સખત ફિક્સ: ઈમ્પોર્ટ કરેલી સાચી ઈમેજ (profileImg) સેટ કરી */}
+                            <img src={profileImg} alt="Dave Anshul" className="hero-profile-img" />
                         </div>
                         <div className="floating-status-card">
                             <div className="status-icon">✓</div>
