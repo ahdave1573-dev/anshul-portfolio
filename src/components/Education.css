@@ -1,0 +1,64 @@
+.education {
+    background-color: var(--bg-card);
+}
+
+.edu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+}
+
+.edu-card,
+.strengths-card {
+    background: var(--bg-dark);
+    padding: 3rem;
+    border-radius: 30px;
+    border: 1px solid var(--border);
+}
+
+.edu-card .icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+.edu-card h3 {
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+}
+
+.edu-card h5 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.duration {
+    display: inline-block;
+    padding: 0.3rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50px;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+.strength-list {
+    margin-top: 1.5rem;
+}
+
+.strength-list li {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--text-muted);
+}
+
+.strength-list li span {
+    color: var(--primary);
+    font-weight: bold;
+}
+
+@media (max-width: 992px) {
+    .edu-grid {
+        grid-template-columns: 1fr;
+    }
+}
