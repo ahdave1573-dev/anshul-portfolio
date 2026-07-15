@@ -30,7 +30,6 @@ const Hero = () => {
 
                     <div className="hero-actions">
                         <a href="#projects" className="btn-solid">Discover My Work <span>→</span></a>
-                        {/* અહીં સખત ફિક્સ: સાચો વેરીએબલ બાઈન્ડ કર્યો */}
                         <a href={resumeFile} download="Anshul_Dave_Resume.pdf" className="btn-outline-dark">
                             Download Resume
                         </a>
@@ -55,7 +54,7 @@ const Hero = () => {
                 <div className="hero-visual-container fade-in">
                     <div className="profile-circle-wrapper">
                         <div className="profile-circle">
-                            {/* અહીં સખત ફિક્સ: ઈમ્પોર્ટ કરેલી સાચી ઈમેજ (profileImg) સેટ કરી */}
+
                             <img src={profileImg} alt="Dave Anshul" className="hero-profile-img" />
                         </div>
                         <div className="floating-status-card">
