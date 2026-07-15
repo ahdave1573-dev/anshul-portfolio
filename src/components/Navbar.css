@@ -11,7 +11,7 @@
 
 .navbar.scrolled {
     padding: 1rem 10%;
-    background: rgba(255, 255, 255, 0.8);
+    background: var(--glass);
     backdrop-filter: blur(10px);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
@@ -29,7 +29,7 @@
 .logo {
     font-size: 1.8rem;
     font-weight: 800;
-    color: #1e293b;
+    color: var(--text-main);
 }
 
 .logo span {
@@ -45,7 +45,7 @@
 .nav-links a {
     font-size: 0.95rem;
     font-weight: 600;
-    color: #64748b;
+    color: var(--text-muted);
     position: relative;
     transition: var(--transition);
 }
@@ -85,7 +85,7 @@
 .bar {
     width: 25px;
     height: 3px;
-    background-color: #1e293b;
+    background-color: var(--text-main);
     border-radius: 10px;
 }
 
