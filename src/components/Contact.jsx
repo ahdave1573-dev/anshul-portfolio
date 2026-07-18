@@ -7,20 +7,59 @@ const Contact = () => {
         email: '',
         message: ''
     });
+    const [errors, setErrors] = useState({});
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
+        if (errors[e.target.name]) {
+            setErrors({ ...errors, [e.target.name]: '' });
+        }
     };
 
-    const handleSubmit = (e) => {
+    const validate = () => {
+        let tempErrors = {};
+        if (!formData.name.trim()) tempErrors.name = "Name is required.";
+        
+        if (!formData.email.trim()) {
+            tempErrors.email = "Email is required.";
+        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.email)) {
+            tempErrors.email = "Invalid email address.";
+        }
+        
+        if (!formData.message.trim()) tempErrors.message = "Message is required.";
+
+        setErrors(tempErrors);
+        return Object.keys(tempErrors).length === 0;
+    };
+
+    const handleWhatsAppSubmit = (e) => {
         e.preventDefault();
 
+        if (!validate()) {
+            return;
+        }
+
         const phoneNumber = "+918849919418"; // Matches contact info
-        const text = `*New Contact Form Submission*\n\n*Name:* ${formData.name}\n*Email:* ${formData.email}\n*Message:* ${formData.message}`;
+        const text = `*New Contact Form Submission*\n\n*Name:* ${formData.name.trim()}\n*Email:* ${formData.email.trim()}\n*Message:* ${formData.message.trim()}`;
         const encodedText = encodeURIComponent(text);
         const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedText}`;
 
         window.open(whatsappUrl, '_blank');
+    };
+
+    const handleEmailSubmit = (e) => {
+        e.preventDefault();
+
+        if (!validate()) {
+            return;
+        }
+
+        const emailAddress = "ahdave1573@gmail.com";
+        const subject = `New Contact from ${formData.name.trim()}`;
+        const body = `Name: ${formData.name.trim()}\nEmail: ${formData.email.trim()}\n\nMessage:\n${formData.message.trim()}`;
+        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${emailAddress}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+        window.open(gmailUrl, '_blank');
     };
 
     return (
@@ -75,7 +114,7 @@ const Contact = () => {
                     </div>
 
                     <div className="contact-form-container fade-in">
-                        <form onSubmit={handleSubmit} className="contact-form">
+                        <form className="contact-form" noValidate>
                             <div className="form-row">
                                 <div className="form-group">
                                     <label>NAME</label>
@@ -85,8 +124,9 @@ const Contact = () => {
                                         placeholder="Your Name"
                                         value={formData.name}
                                         onChange={handleChange}
-                                        required
+                                        className={errors.name ? 'input-error' : ''}
                                     />
+                                    {errors.name && <span className="error-text" style={{color: 'red', fontSize: '12px', marginTop: '5px', display: 'block'}}>{errors.name}</span>}
                                 </div>
                                 <div className="form-group">
                                     <label>EMAIL</label>
@@ -96,8 +136,9 @@ const Contact = () => {
                                         placeholder="your.email@example.com"
                                         value={formData.email}
                                         onChange={handleChange}
-                                        required
+                                        className={errors.email ? 'input-error' : ''}
                                     />
+                                    {errors.email && <span className="error-text" style={{color: 'red', fontSize: '12px', marginTop: '5px', display: 'block'}}>{errors.email}</span>}
                                 </div>
                             </div>
                             <div className="form-group">
@@ -108,12 +149,20 @@ const Contact = () => {
                                     rows="5"
                                     value={formData.message}
                                     onChange={handleChange}
-                                    required
+                                    className={errors.message ? 'input-error' : ''}
                                 ></textarea>
+                                {errors.message && <span className="error-text" style={{color: 'red', fontSize: '12px', marginTop: '5px', display: 'block'}}>{errors.message}</span>}
                             </div>
-                            <button type="submit" className="submit-btn">
-                                Send Message <span>🚀</span>
-                            </button>
+                            <div className="submit-buttons" style={{ display: 'flex', gap: '15px', marginTop: '10px' }}>
+                                <button type="button" onClick={handleWhatsAppSubmit} className="submit-btn btn-whatsapp" style={{ flex: 1, justifyContent: 'center' }}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                                    WhatsApp
+                                </button>
+                                <button type="button" onClick={handleEmailSubmit} className="submit-btn btn-email" style={{ flex: 1, justifyContent: 'center' }}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                                    Email
+                                </button>
+                            </div>
                         </form>
                     </div>
                 </div>
