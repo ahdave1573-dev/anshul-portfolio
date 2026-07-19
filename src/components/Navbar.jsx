@@ -4,6 +4,7 @@ import './Navbar.css';
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isDark, setIsDark] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,20 +41,20 @@ const Navbar = () => {
         <a href="#home" className="logo">
           Dave <span>Anshul.</span>
         </a>
-        <ul className="nav-links">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#contact">Contact</a></li>
+        <ul className={`nav-links ${menuOpen ? 'active' : ''}`}>
+          <li><a href="#home" onClick={() => setMenuOpen(false)}>Home</a></li>
+          <li><a href="#about" onClick={() => setMenuOpen(false)}>About</a></li>
+          <li><a href="#projects" onClick={() => setMenuOpen(false)}>Projects</a></li>
+          <li><a href="#services" onClick={() => setMenuOpen(false)}>Services</a></li>
+          <li><a href="#experience" onClick={() => setMenuOpen(false)}>Experience</a></li>
+          <li><a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a></li>
         </ul>
         <div className="nav-actions">
-          <button onClick={toggleTheme} className="theme-toggle-btn" aria-label="Toggle theme" style={{ fontSize: '1.2rem', marginRight: '15px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <button onClick={toggleTheme} className="theme-toggle-btn" aria-label="Toggle theme" style={{ fontSize: '1.2rem', marginRight: '15px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'transparent', border: 'none', cursor: 'pointer' }}>
             {isDark ? '☀️' : '🌙'}
           </button>
           <a href="#contact" className="btn-nav-cta">Let's Talk</a>
-          <button className="nav-toggle">
+          <button className={`nav-toggle ${menuOpen ? 'open' : ''}`} onClick={() => setMenuOpen(!menuOpen)}>
             <span className="bar"></span>
             <span className="bar"></span>
             <span className="bar"></span>
