@@ -230,5 +230,26 @@
 
     .form-row {
         flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .contact-form-container {
+        width: 100%;
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-form-container {
+        padding: 1.5rem;
+    }
+    
+    .submit-buttons {
+        flex-direction: column;
+        gap: 10px !important;
+    }
+    
+    .contact-header h2 {
+        font-size: 2rem;
     }
 }
