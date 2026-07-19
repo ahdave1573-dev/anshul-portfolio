@@ -248,6 +248,11 @@
         flex-direction: column;
         gap: 10px !important;
     }
+
+    .submit-btn {
+        width: 100%;
+        justify-content: center;
+    }
     
     .contact-header h2 {
         font-size: 2rem;
