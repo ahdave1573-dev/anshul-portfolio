@@ -7,7 +7,6 @@ const projectsData = [
         tech: ["PHP", "MySQL", "HTML", "CSS", "JavaScript"],
         desc: "A comprehensive e-commerce platform featuring dynamic product listings, secure user authentication, and seamless cart management.",
         image: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&q=80&w=800",
-        liveLink: "http://allinonebazaar.infinityfreeapp.com",
         githubLink: "https://github.com/ahdave1573-dev/All-In-One-Bazaar.git"
     },
     {
